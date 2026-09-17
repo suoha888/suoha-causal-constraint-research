@@ -1,0 +1,9 @@
+interface:
+  display_name: "Suoha Causal Constraint Research"
+  short_description: "Auditable constraint-to-capture company and supply-chain research"
+  brand_color: "#0f172a"
+  default_prompt: "Use this skill to map the system shift, verify dependency and supply constraints, separate issuer exposure from economic capture, bridge operations to per-share economics, test market expectations, and state what would disprove the case."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools: []

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:evidence",
+  "title": "Evidence record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "source_type",
+    "source_locator",
+    "known_at",
+    "retrieved_at",
+    "access",
+    "independence_group",
+    "epistemic",
+    "status",
+    "supports",
+    "claim_ids"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "source_type": { "type": "string" },
+    "source_locator": { "type": "string" },
+    "published_at": { "type": ["string", "null"] },
+    "known_at": { "type": "string", "format": "date" },
+    "retrieved_at": { "type": "string", "format": "date" },
+    "access": {
+      "type": "string",
+      "enum": ["PUBLIC", "RESTRICTED", "PRIVATE", "SYNTHETIC"]
+    },
+    "independence_group": { "type": "string" },
+    "epistemic": {
+      "type": "string",
+      "enum": ["FACT", "INFERENCE", "HYPOTHESIS", "UNKNOWN", "CONTRADICTED"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["SUPPORTED", "PARTIAL", "STALE", "CONTRADICTED", "NOT_ESTABLISHED"]
+    },
+    "supports": { "type": "boolean" },
+    "claim_ids": { "type": "array", "items": { "type": "string" } },
+    "content_hash": { "type": "string" },
+    "notes": { "type": "string" }
+  }
+}

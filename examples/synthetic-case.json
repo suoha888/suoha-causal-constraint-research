@@ -1,0 +1,323 @@
+{
+  "schema_version": "1",
+  "case_id": "synthetic-thermal-interface-001",
+  "as_of": "2026-09-15",
+  "research_cutoff": "2026-09-15",
+  "question": "Can a qualified thermal-interface supplier retain durable economics as a fictional compute platform scales?",
+  "system_shift": {
+    "claim_id": "shift-compute-density",
+    "description": "A fictional compute platform increases rack density and raises the cooling requirement per deployed unit.",
+    "event_date": "2026-09-05",
+    "epistemic": "FACT",
+    "status": "SUPPORTED",
+    "evidence_ids": ["ev-shift"]
+  },
+  "constraints": [
+    {
+      "id": "constraint-thermal-interface",
+      "label": "Qualified thermal interface material for the fictional platform",
+      "dimensions": [
+        "system_necessity",
+        "qualification_friction",
+        "supply_ramp_latency",
+        "yield_stability",
+        "merchant_supply_availability",
+        "capture_retention"
+      ],
+      "state": "QUALIFIED",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "evidence_ids": ["ev-qualification", "ev-supply"]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-shift-to-interface",
+      "from": "shift-compute-density",
+      "to": "constraint-thermal-interface",
+      "relationship": "higher_density_requires_more_qualified_interface_material",
+      "epistemic": "INFERENCE",
+      "status": "SUPPORTED",
+      "evidence_ids": ["ev-shift", "ev-qualification"],
+      "verified_at": "2026-09-12"
+    }
+  ],
+  "issuers": [
+    {
+      "id": "issuer-aurora-grid-components",
+      "name": "Aurora Grid Components Ltd",
+      "ticker": "AGC",
+      "role": "qualified thermal-interface supplier",
+      "exposure": {
+        "path": "Supplies the qualified interface material used in the fictional platform route.",
+        "constraint_ids": ["constraint-thermal-interface"],
+        "epistemic": "FACT",
+        "status": "SUPPORTED",
+        "evidence_ids": ["ev-issuer-exposure"]
+      },
+      "capture": {
+        "mechanism": "Qualification friction and stable yield allow partial price retention while alternatives complete testing.",
+        "score": 4.0,
+        "epistemic": "INFERENCE",
+        "status": "SUPPORTED",
+        "evidence_ids": ["ev-qualification", "ev-price"],
+        "leakage": ["customer redesign", "second-source qualification", "internal production"]
+      },
+      "capital_bridge": {
+        "driver_to_volume": "Higher rack density increases interface-material units per deployed rack.",
+        "volume_to_revenue": "Unit growth is multiplied by the observed contract price.",
+        "revenue_to_gross_profit": "Yield stability and mix support a stable gross-margin assumption.",
+        "gross_profit_to_cash": "Cash conversion is reduced by working capital during ramp.",
+        "cash_to_capital": "Expansion requires measured process equipment capex funded from operating cash and existing liquidity.",
+        "capital_to_per_share": "Scenario per-share value is diluted by the declared expansion share count.",
+        "epistemic": "INFERENCE",
+        "status": "SUPPORTED",
+        "evidence_ids": ["ev-financial-bridge"],
+        "assumptions": ["fictional unit growth", "fictional contract price", "fictional dilution"]
+      },
+      "market": {
+        "currency": "USD",
+        "price": 42.0,
+        "shares_outstanding": 10000000,
+        "market_cap": 420000000,
+        "price_as_of": "2026-09-15T16:00:00+00:00",
+        "market_cap_method": "price multiplied by shares outstanding",
+        "epistemic": "FACT",
+        "status": "SUPPORTED",
+        "evidence_ids": ["ev-market"],
+        "tolerance": 0.02
+      }
+    }
+  ],
+  "expectation_gap": {
+    "claim": "The research case assumes qualification persistence while the market state assumes rapid second-source entry.",
+    "market_implied": "Rapid second-source entry compresses price retention within four quarters.",
+    "research_implied": "Qualification friction preserves partial price retention for six quarters.",
+    "epistemic": "HYPOTHESIS",
+    "status": "PARTIAL",
+    "evidence_ids": ["ev-market", "ev-price"]
+  },
+  "gates": {
+    "G0_identity_time": {
+      "state": "PASS",
+      "reason": "Entity, dates, cutoff, and units are explicit.",
+      "evidence_ids": ["ev-market"]
+    },
+    "G1_dependency_necessity": {
+      "state": "PASS",
+      "reason": "The fictional platform route requires the qualified interface material.",
+      "evidence_ids": ["ev-shift", "ev-qualification"]
+    },
+    "G2_constraint_reality": {
+      "state": "PASS",
+      "reason": "Qualification and supply observations support a live constraint.",
+      "evidence_ids": ["ev-qualification", "ev-supply"]
+    },
+    "G3_edge_verification": {
+      "state": "PASS",
+      "reason": "The dependency edge is explicit and dated.",
+      "evidence_ids": ["ev-shift", "ev-qualification"]
+    },
+    "G4_capture_proof": {
+      "state": "PASS",
+      "reason": "The issuer path and price-retention mechanism are evidenced.",
+      "evidence_ids": ["ev-issuer-exposure", "ev-price"]
+    },
+    "G5_financial_transmission": {
+      "state": "PASS",
+      "reason": "The operating driver is connected to cash, capex, funding, and per-share assumptions.",
+      "evidence_ids": ["ev-financial-bridge"]
+    },
+    "G6_expectation_test": {
+      "state": "PASS",
+      "reason": "Price, market value, market expectation, and research expectation are dated.",
+      "evidence_ids": ["ev-market", "ev-price"]
+    },
+    "G7_disproof_readiness": {
+      "state": "PASS",
+      "reason": "The key alternative-entry risk has a measurable test.",
+      "evidence_ids": ["ev-qualification", "ev-price"]
+    }
+  },
+  "countercases": [
+    {
+      "id": "countercase-second-source",
+      "severity": "MATERIAL",
+      "claim": "A second qualified source enters faster than expected and removes price retention.",
+      "epistemic": "HYPOTHESIS",
+      "status": "PARTIAL",
+      "evidence_ids": ["ev-supply"],
+      "disproof_plan_ids": ["plan-second-source"]
+    },
+    {
+      "id": "countercase-ramp-yield",
+      "severity": "LOCAL",
+      "claim": "Ramp yield is below the scenario assumption for one quarter.",
+      "epistemic": "HYPOTHESIS",
+      "status": "NOT_ESTABLISHED",
+      "evidence_ids": [],
+      "disproof_plan_ids": ["plan-yield"]
+    }
+  ],
+  "disproof_plans": [
+    {
+      "id": "plan-second-source",
+      "target_claim_id": "constraint-thermal-interface",
+      "test": "Review each quarterly qualification disclosure and customer allocation update.",
+      "signal": "A second source is accepted for the target route.",
+      "threshold": "Two independent customer confirmations or one audited allocation record.",
+      "window": "Next two reporting quarters",
+      "action": "Reduce the capture score and rebuild the price-retention scenario.",
+      "owner": "research-process",
+      "epistemic": "HYPOTHESIS",
+      "status": "NOT_ESTABLISHED",
+      "evidence_ids": []
+    },
+    {
+      "id": "plan-yield",
+      "target_claim_id": "issuer-aurora-grid-components",
+      "test": "Compare reported yield and warranty credits with the capital bridge.",
+      "signal": "Yield remains below the modeled floor.",
+      "threshold": "Two consecutive quarters below the stated floor.",
+      "window": "Next four reporting quarters",
+      "action": "Downgrade the operating case if cash conversion also misses.",
+      "owner": "research-process",
+      "epistemic": "HYPOTHESIS",
+      "status": "NOT_ESTABLISHED",
+      "evidence_ids": []
+    }
+  ],
+  "current_state": "SUPPORTED",
+  "transitions": [
+    {
+      "id": "transition-001",
+      "from": "DRAFT",
+      "to": "EVIDENCE_BUILDING",
+      "occurred_at": "2026-09-06T09:00:00+00:00",
+      "reason": "Question and cutoff were fixed.",
+      "trigger_evidence_ids": ["ev-shift"],
+      "analyst_id": "synthetic-process",
+      "case_version": "1.0"
+    },
+    {
+      "id": "transition-002",
+      "from": "EVIDENCE_BUILDING",
+      "to": "TESTABLE",
+      "occurred_at": "2026-09-12T09:00:00+00:00",
+      "reason": "Edges, exposure, and disproof plans were recorded.",
+      "trigger_evidence_ids": ["ev-qualification", "ev-issuer-exposure"],
+      "analyst_id": "synthetic-process",
+      "case_version": "1.0"
+    },
+    {
+      "id": "transition-003",
+      "from": "TESTABLE",
+      "to": "SUPPORTED",
+      "occurred_at": "2026-09-15T16:00:00+00:00",
+      "reason": "All gates passed for the synthetic case.",
+      "trigger_evidence_ids": ["ev-market", "ev-financial-bridge"],
+      "analyst_id": "synthetic-process",
+      "case_version": "1.0"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "ev-shift",
+      "source_type": "synthetic",
+      "source_locator": "synthetic://system-shift",
+      "published_at": "2026-09-05",
+      "known_at": "2026-09-05",
+      "retrieved_at": "2026-09-06",
+      "access": "SYNTHETIC",
+      "independence_group": "synthetic-system",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "supports": true,
+      "claim_ids": ["shift-compute-density"]
+    },
+    {
+      "id": "ev-qualification",
+      "source_type": "synthetic",
+      "source_locator": "synthetic://qualification-record",
+      "published_at": "2026-09-10",
+      "known_at": "2026-09-10",
+      "retrieved_at": "2026-09-11",
+      "access": "SYNTHETIC",
+      "independence_group": "synthetic-operations",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "supports": true,
+      "claim_ids": ["constraint-thermal-interface", "edge-shift-to-interface"]
+    },
+    {
+      "id": "ev-supply",
+      "source_type": "synthetic",
+      "source_locator": "synthetic://supply-observation",
+      "published_at": "2026-09-11",
+      "known_at": "2026-09-11",
+      "retrieved_at": "2026-09-12",
+      "access": "SYNTHETIC",
+      "independence_group": "synthetic-market",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "supports": true,
+      "claim_ids": ["constraint-thermal-interface", "countercase-second-source"]
+    },
+    {
+      "id": "ev-issuer-exposure",
+      "source_type": "synthetic",
+      "source_locator": "synthetic://issuer-exposure",
+      "published_at": "2026-09-12",
+      "known_at": "2026-09-12",
+      "retrieved_at": "2026-09-12",
+      "access": "SYNTHETIC",
+      "independence_group": "synthetic-issuer",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "supports": true,
+      "claim_ids": ["issuer-aurora-grid-components"]
+    },
+    {
+      "id": "ev-price",
+      "source_type": "synthetic",
+      "source_locator": "synthetic://price-retention",
+      "published_at": "2026-09-13",
+      "known_at": "2026-09-13",
+      "retrieved_at": "2026-09-13",
+      "access": "SYNTHETIC",
+      "independence_group": "synthetic-customer",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "supports": true,
+      "claim_ids": ["issuer-aurora-grid-components", "countercase-second-source"]
+    },
+    {
+      "id": "ev-financial-bridge",
+      "source_type": "synthetic",
+      "source_locator": "synthetic://financial-bridge",
+      "published_at": "2026-09-14",
+      "known_at": "2026-09-14",
+      "retrieved_at": "2026-09-14",
+      "access": "SYNTHETIC",
+      "independence_group": "synthetic-finance",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "supports": true,
+      "claim_ids": ["issuer-aurora-grid-components"]
+    },
+    {
+      "id": "ev-market",
+      "source_type": "synthetic",
+      "source_locator": "synthetic://market-record",
+      "published_at": "2026-09-15",
+      "known_at": "2026-09-15",
+      "retrieved_at": "2026-09-15",
+      "access": "SYNTHETIC",
+      "independence_group": "synthetic-market-record",
+      "epistemic": "FACT",
+      "status": "SUPPORTED",
+      "supports": true,
+      "claim_ids": ["issuer-aurora-grid-components"]
+    }
+  ]
+}

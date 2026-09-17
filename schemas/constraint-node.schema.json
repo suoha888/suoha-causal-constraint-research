@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:constraint-node",
+  "title": "Constraint node",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "label", "dimensions", "state", "epistemic", "status", "evidence_ids"],
+  "properties": {
+    "id": { "type": "string" },
+    "label": { "type": "string" },
+    "dimensions": { "type": "array", "items": { "type": "string" } },
+    "state": {
+      "type": "string",
+      "enum": [
+        "NAMEPLATE",
+        "INSTALLED",
+        "OPERABLE",
+        "QUALIFIED",
+        "MERCHANT",
+        "CAPTIVE",
+        "UNCOMMITTED_AVAILABLE"
+      ]
+    },
+    "epistemic": {
+      "type": "string",
+      "enum": ["FACT", "INFERENCE", "HYPOTHESIS", "UNKNOWN", "CONTRADICTED"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["SUPPORTED", "PARTIAL", "STALE", "CONTRADICTED", "NOT_ESTABLISHED"]
+    },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "state_history": { "type": "array", "items": { "type": "object" } }
+  }
+}

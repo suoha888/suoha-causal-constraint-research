@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:dependency-edge",
+  "title": "Dependency edge",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "from", "to", "relationship", "epistemic", "status", "evidence_ids"],
+  "properties": {
+    "id": { "type": "string" },
+    "from": { "type": "string" },
+    "to": { "type": "string" },
+    "relationship": { "type": "string" },
+    "epistemic": {
+      "type": "string",
+      "enum": ["FACT", "INFERENCE", "HYPOTHESIS", "UNKNOWN", "CONTRADICTED"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["SUPPORTED", "PARTIAL", "STALE", "CONTRADICTED", "NOT_ESTABLISHED"]
+    },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "verified_at": { "type": "string", "format": "date" }
+  }
+}

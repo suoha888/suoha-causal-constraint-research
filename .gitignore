@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+dist/*
+!dist/.gitkeep
+.venv/
+private-research-corpus/
+*.local.json
+*.private.json
+.env
+.DS_Store

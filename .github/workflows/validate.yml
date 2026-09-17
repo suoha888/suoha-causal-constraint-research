@@ -1,0 +1,26 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  public-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check schemas
+        run: python scripts/check_schemas.py
+      - name: Validate synthetic case
+        run: python scripts/validate_research_case.py examples/synthetic-case.json
+      - name: Scan public surface
+        run: python scripts/validate_public_hygiene.py
+      - name: Run evaluation suite
+        run: python scripts/run_evals.py --verbose
+      - name: Build runtime manifest
+        run: python scripts/build_runtime.py
+      - name: Verify runtime manifest
+        run: python scripts/verify_runtime.py

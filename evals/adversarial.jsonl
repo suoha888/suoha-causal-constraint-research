@@ -1,0 +1,6 @@
+{"id":"temporal-leakage","input_change":"set one supporting evidence known_at after research_cutoff","expected":"reject","reason":"future information cannot support a replay"}
+{"id":"private-taint","input_change":"set one supporting evidence access to PRIVATE","expected":"reject","reason":"private evidence cannot support a public case"}
+{"id":"capacity-overclaim","input_change":"set a constraint to UNCOMMITTED_AVAILABLE and remove its evidence","expected":"reject","reason":"capacity state needs direct support"}
+{"id":"gate-compensation","input_change":"set G1 to FAIL while leaving G7 as PASS","expected":"reject","reason":"downstream PASS cannot compensate for a failed prerequisite"}
+{"id":"market-arithmetic","input_change":"change market_cap without changing price or shares","expected":"reject","reason":"market value must reconcile"}
+{"id":"countercase-without-test","input_change":"remove the plan from a MATERIAL countercase","expected":"reject","reason":"material risk must be executable"}

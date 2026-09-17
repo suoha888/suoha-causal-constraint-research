@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:case-transition",
+  "title": "Case transition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "from",
+    "to",
+    "occurred_at",
+    "reason",
+    "trigger_evidence_ids",
+    "case_version"
+  ],
+  "properties": {
+    "id": { "type": "string" },
+    "from": { "type": "string" },
+    "to": { "type": "string" },
+    "occurred_at": { "type": "string", "format": "date-time" },
+    "reason": { "type": "string" },
+    "trigger_evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "analyst_id": { "type": "string" },
+    "case_version": { "type": "string" }
+  }
+}

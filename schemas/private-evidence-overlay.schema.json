@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:private-evidence-overlay",
+  "title": "Private evidence overlay metadata",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["overlay_version", "records"],
+  "properties": {
+    "overlay_version": { "const": "1" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "access", "content_hash", "source_type", "known_at"],
+        "properties": {
+          "evidence_id": { "type": "string" },
+          "access": { "type": "string", "enum": ["RESTRICTED", "PRIVATE"] },
+          "content_hash": { "type": "string", "minLength": 32 },
+          "source_type": { "type": "string" },
+          "known_at": { "type": "string", "format": "date" },
+          "locator_hint": { "type": "string" }
+        }
+      }
+    }
+  }
+}

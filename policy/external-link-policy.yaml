@@ -1,0 +1,20 @@
+version: 1
+default: reject
+allowed_hosts:
+  - sec.gov
+  - www.sec.gov
+  - investor.gov
+  - data.sec.gov
+  - europa.eu
+  - ec.europa.eu
+  - nasdaq.com
+  - nyse.com
+  - github.com
+  - githubusercontent.com
+  - json-schema.org
+  - suoha.example
+allowed_schemes:
+  - https
+notes:
+  - "Public documentation may link to standards, regulators, exchanges, and project-owned documentation."
+  - "Personal profiles, social feeds, newsletters, and source archives are not public documentation dependencies."

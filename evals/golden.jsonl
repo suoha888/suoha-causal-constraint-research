@@ -1,0 +1,1 @@
+{"id":"synthetic-valid","fixture":"examples/synthetic-case.json","expected":"accept","checks":["ordered gates","dated evidence","supply state","capture bridge","market arithmetic"]}

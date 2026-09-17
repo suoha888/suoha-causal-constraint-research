@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:report",
+  "title": "Compiled research report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "report_version",
+    "case_id",
+    "classification",
+    "confidence",
+    "as_of",
+    "research_cutoff",
+    "finding",
+    "sections",
+    "evidence_ledger"
+  ],
+  "properties": {
+    "report_version": { "const": "1" },
+    "case_id": { "type": "string" },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "MAP_ONLY",
+        "CONSTRAINT_CASE",
+        "OPERATING_CASE",
+        "VARIANT_CASE",
+        "RESEARCH_READY",
+        "INVALIDATED"
+      ]
+    },
+    "confidence": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+    "as_of": { "type": "string", "format": "date" },
+    "research_cutoff": { "type": "string", "format": "date" },
+    "finding": { "type": "string" },
+    "sections": { "type": "object" },
+    "evidence_ledger": { "type": "array", "items": { "type": "object" } },
+    "unknowns": { "type": "array", "items": { "type": "string" } },
+    "next_checks": { "type": "array", "items": { "type": "string" } }
+  }
+}

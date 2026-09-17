@@ -1,0 +1,3 @@
+{"id":"cutoff-equality","known_at":"cutoff","expected":"accept"}
+{"id":"cutoff-after","known_at":"after_cutoff","expected":"reject"}
+{"id":"unknown-clock","known_at":"missing","expected":"reject"}

@@ -1,0 +1,27 @@
+version: 1
+public_paths:
+  - SKILL.md
+  - README.md
+  - FUNCTIONAL_SPEC.md
+  - ARCHITECTURE.md
+  - LICENSE
+  - THIRD_PARTY_NOTICES.md
+  - agents/
+  - adapters/
+  - contracts/
+  - evals/
+  - examples/
+  - kernel/
+  - policy/
+  - references/
+  - schemas/
+  - scripts/
+  - tests/
+private_paths:
+  - private-research-corpus/
+  - "*.private.json"
+  - "*.local.json"
+prohibited_content:
+  - "personal attribution"
+  - "private source body"
+  - "unlicensed dataset"
