@@ -1,7 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
   "$id": "urn:suoha:causal-constraint-research:research-case",
-  "title": "Research case",
+  "title": "Legacy v1 research case (compatibility)",
+  "$comment": "New cases must use research-case-v1.1.schema.json, which composes canonical claim, evidence, metric, supply, market, and gate contracts.",
   "type": "object",
   "additionalProperties": false,
   "required": [

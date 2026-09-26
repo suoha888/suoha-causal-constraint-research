@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:supply-state",
+  "title": "Parallel supply-state observation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "state_type",
+    "quantity",
+    "unit",
+    "scope",
+    "facility_or_product",
+    "as_of",
+    "epistemic_type",
+    "evidence_state",
+    "evidence_ids",
+    "unknowns"
+  ],
+  "properties": {
+    "state_type": {
+      "type": "string",
+      "enum": ["NAMEPLATE", "INSTALLED", "OPERABLE", "QUALIFIED", "MERCHANT", "CAPTIVE", "UNCOMMITTED_AVAILABLE"]
+    },
+    "quantity": { "type": ["number", "null"] },
+    "unit": { "type": "string", "minLength": 1 },
+    "scope": { "type": "string", "minLength": 1 },
+    "facility_or_product": { "type": "string", "minLength": 1 },
+    "as_of": { "type": "string", "format": "date-time" },
+    "epistemic_type": { "type": "string", "enum": ["FACT", "INFERENCE", "HYPOTHESIS", "UNKNOWN"] },
+    "evidence_state": { "type": "string", "enum": ["SUPPORTED", "PARTIAL", "STALE", "CONTRADICTED", "NOT_ESTABLISHED"] },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } },
+    "unknowns": { "type": "array", "items": { "type": "string" } }
+  }
+}

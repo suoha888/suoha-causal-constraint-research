@@ -2,6 +2,11 @@ version: 1
 public_paths:
   - SKILL.md
   - README.md
+  - RESEARCH-PROVENANCE.md
+  - NOTICE.md
+  - DATA_POLICY.md
+  - docs/
+  - RELEASE_READINESS.md
   - FUNCTIONAL_SPEC.md
   - ARCHITECTURE.md
   - LICENSE

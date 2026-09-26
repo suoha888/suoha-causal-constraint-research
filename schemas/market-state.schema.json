@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:market-state",
+  "title": "Dated market state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["currency", "quote_type", "price", "price_as_of", "shares_outstanding", "shares_as_of", "market_cap", "market_cap_as_of", "market_cap_method", "status", "source_ids", "calculation_ids"],
+  "properties": {
+    "exchange": { "type": ["string", "null"] },
+    "currency": { "type": "string", "minLength": 3 },
+    "quote_type": { "type": "string", "enum": ["REALTIME", "DELAYED", "OFFICIAL_CLOSE", "HISTORICAL", "UNKNOWN"] },
+    "price": { "type": ["number", "null"] },
+    "price_as_of": { "type": ["string", "null"], "format": "date-time" },
+    "price_source_id": { "type": ["string", "null"] },
+    "shares_outstanding": { "type": ["number", "null"] },
+    "shares_as_of": { "type": ["string", "null"], "format": "date-time" },
+    "shares_source_id": { "type": ["string", "null"] },
+    "market_cap": { "type": ["number", "null"] },
+    "market_cap_as_of": { "type": ["string", "null"], "format": "date-time" },
+    "market_cap_method": { "type": "string", "minLength": 3 },
+    "enterprise_value": { "type": ["number", "null"] },
+    "enterprise_value_as_of": { "type": ["string", "null"], "format": "date-time" },
+    "fx_rate": { "type": ["number", "null"] },
+    "fx_pair": { "type": ["string", "null"] },
+    "fx_as_of": { "type": ["string", "null"], "format": "date-time" },
+    "status": { "type": "string", "enum": ["SUPPORTED", "PARTIAL", "STALE", "UNKNOWN", "NOT_APPLICABLE"] },
+    "source_ids": { "type": "array", "items": { "type": "string" } },
+    "calculation_ids": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  }
+}

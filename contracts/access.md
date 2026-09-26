@@ -1,12 +1,11 @@
 # Access contract
 
-Access levels:
+Access and rights are separate fields:
 
-- PUBLIC: redistribution and citation are permitted by the source terms;
-- RESTRICTED: usable only in an approved workspace;
-- PRIVATE: not distributable and not emitted;
-- SYNTHETIC: generated for testing.
+- `PUBLICLY_ACCESSIBLE`, `RESTRICTED_ACCESS`, `PRIVATE`, `SYNTHETIC`;
+- redistribution rights: `ALLOWED`, `NOT_ALLOWED`, `UNKNOWN`;
+- citation status: `CITABLE`, `RESTRICTED`, `UNKNOWN`.
 
-The public compiler rejects a restricted or private evidence ID when it is used to support a public claim. It may retain a redacted metadata record and downgrade the claim to UNKNOWN or PARTIAL.
+The public compiler rejects a restricted or private evidence ID when it is used to support a public claim. A claim derived from private evidence must carry independent public support or remain `UNKNOWN`/`NOT_ESTABLISHED`.
 
 No credential, cookie, browser storage, personal identifier, or raw source body belongs in a case file.

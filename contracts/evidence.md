@@ -1,20 +1,15 @@
-# Evidence contract
+# Evidence contract (v1.1)
 
-An evidence record is the smallest auditable unit supporting a claim.
+An evidence record is a dated source observation. It is not itself a claim and does not carry a `supports` boolean.
 
 Required fields:
 
-- id: unique stable identifier;
-- source_type: filing, regulator, official_release, technical_document, customer_disclosure, supplier_disclosure, specialist_analysis, market_record, interview, discussion, or synthetic;
-- source_locator: URL, document identifier, file reference, or synthetic locator;
-- published_at: source publication time when known;
-- known_at: earliest time the fact was available to the research process;
-- retrieved_at: collection time;
-- access: PUBLIC, RESTRICTED, PRIVATE, or SYNTHETIC;
-- independence_group: origin used to avoid double-counting;
-- epistemic: FACT, INFERENCE, HYPOTHESIS, UNKNOWN, or CONTRADICTED;
-- status: SUPPORTED, PARTIAL, STALE, CONTRADICTED, or NOT_ESTABLISHED;
-- supports: boolean;
-- claim_ids: material claims linked to this record.
+- `evidence_id`, source type, locator, and source perspective;
+- `published_at`, `known_at`, `effective_at` or an effective period, `retrieved_at`, and time precision;
+- `access_class`: `PUBLICLY_ACCESSIBLE`, `RESTRICTED_ACCESS`, `PRIVATE`, or `SYNTHETIC`;
+- `redistribution_rights` and `citation_status`;
+- `independence_group` and evidence state.
 
-The source body is not part of the public contract. A locator must be reproducible for public material or be accompanied by a declared access restriction.
+Claims link to evidence through `ClaimEvidenceLink` with `DIRECT_SUPPORT`, `PARTIAL_SUPPORT`, `CONTEXT`, or `CONTRADICT`. Repeated reports from one origin remain one independence group.
+
+Source bodies are never required in the public contract. Public locators must be reproducible and legally usable for the intended output; restricted locators remain private.

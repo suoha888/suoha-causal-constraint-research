@@ -1,19 +1,18 @@
-# Temporal contract
+# Temporal contract (v1.1)
 
-The compiler distinguishes three clocks:
+The compiler distinguishes four clocks:
 
-- published_at: when the source was released;
-- known_at: when the fact could have entered the research set;
-- retrieved_at: when the system collected it.
+- `published_at`: when the source was released;
+- `known_at`: when the fact could have entered the research set;
+- `effective_at` or an effective period: the real-world date or period described;
+- `retrieved_at`: when the system collected it.
 
-For a replay with cutoff C:
+Every populated date-time includes an explicit timezone. For a replay with cutoff `C`:
 
-    usable = known_at <= C
+```text
+usable supporting evidence = known_at <= C
+```
 
-If known_at is absent or malformed, the evidence is UNKNOWN. If known_at is after C, it may be stored for a later version but cannot support the replay. A publication date after C is also excluded unless the case explicitly records an earlier knowable event and explains the discrepancy.
+Later price moves, orders, acquisitions, or filings may update a later case version but cannot rewrite the evidence state of the earlier replay. Current market values always show quote type and retrieval time; `current` without a timestamp is invalid.
 
-Live reports still show the retrieval time. “Current” without a timestamp is invalid.
-
-## Freshness
-
-Freshness is claim-specific. Price and market value may expire within minutes; capacity and qualification may expire when a project, contract, or process changes; audited financials expire at the next reporting event. Store a freshness window only when the analyst can defend it.
+Freshness is claim-specific: quotes can expire in minutes, capacity when a project or contract changes, and audited financials at the next reporting event. Do not invent a universal freshness window.

@@ -1,6 +1,6 @@
-{"id":"temporal-leakage","input_change":"set one supporting evidence known_at after research_cutoff","expected":"reject","reason":"future information cannot support a replay"}
-{"id":"private-taint","input_change":"set one supporting evidence access to PRIVATE","expected":"reject","reason":"private evidence cannot support a public case"}
-{"id":"capacity-overclaim","input_change":"set a constraint to UNCOMMITTED_AVAILABLE and remove its evidence","expected":"reject","reason":"capacity state needs direct support"}
-{"id":"gate-compensation","input_change":"set G1 to FAIL while leaving G7 as PASS","expected":"reject","reason":"downstream PASS cannot compensate for a failed prerequisite"}
-{"id":"market-arithmetic","input_change":"change market_cap without changing price or shares","expected":"reject","reason":"market value must reconcile"}
-{"id":"countercase-without-test","input_change":"remove the plan from a MATERIAL countercase","expected":"reject","reason":"material risk must be executable"}
+{"id":"temporal-leakage","fixture":"examples/synthetic-case-v1.1.json","mutations":[{"op":"set","path":["evidence",0,"known_at"],"value":"2099-01-01T00:00:00Z"}],"expected":"reject","error_codes":["temporal_leakage"]}
+{"id":"private-taint","fixture":"examples/synthetic-case-v1.1.json","mutations":[{"op":"set","path":["evidence",0,"access_class"],"value":"PRIVATE"}],"expected":"reject","error_codes":["private_evidence_taint"]}
+{"id":"capacity-overclaim","fixture":"examples/synthetic-case-v1.1.json","mutations":[{"op":"set","path":["constraints",0,"supply_states",3,"evidence_ids"],"value":[]}],"expected":"reject","error_codes":["unsupported_supply_state"]}
+{"id":"gate-compensation","fixture":"examples/synthetic-case-v1.1.json","mutations":[{"op":"set","path":["gates","G1_system_necessity","state"],"value":"FAIL"}],"expected":"reject","error_codes":["derived_gate_mismatch"]}
+{"id":"market-arithmetic","fixture":"examples/synthetic-case-v1.1.json","mutations":[{"op":"set","path":["issuers",0,"market","market_cap"],"value":1}],"expected":"reject","error_codes":["market_cap_mismatch"]}
+{"id":"countercase-without-test","fixture":"examples/synthetic-case-v1.1.json","mutations":[{"op":"set","path":["countercases",0,"disproof_plan_ids"],"value":[]}],"expected":"reject","error_codes":["missing_disproof"]}

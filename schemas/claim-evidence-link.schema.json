@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:claim-evidence-link",
+  "title": "Claim to evidence link",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["link_id", "claim_id", "evidence_id", "relation", "support_scope"],
+  "properties": {
+    "link_id": { "type": "string", "minLength": 3 },
+    "claim_id": { "type": "string", "minLength": 3 },
+    "evidence_id": { "type": "string", "minLength": 3 },
+    "relation": {
+      "type": "string",
+      "enum": ["DIRECT_SUPPORT", "PARTIAL_SUPPORT", "CONTEXT", "CONTRADICT"]
+    },
+    "support_scope": { "type": "string", "minLength": 3 },
+    "notes": { "type": "string" }
+  }
+}

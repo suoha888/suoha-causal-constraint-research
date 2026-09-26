@@ -1,106 +1,104 @@
-# Functional Specification
+# Functional specification (v1.1)
 
-## Purpose
+## Product promise
 
-Implement a reusable research compiler that converts a dated research question into an auditable causal case. The implementation must be independent of any particular analyst, publication, company, or source collection.
+Given a ticker or company, produce a dated, source-led research case that explains the system constraint, proves or rejects the supply-chain relationship, tests alternatives, validates customer behavior, connects issuer exposure to per-share economics, and states what remains unknown. A missing data capability lowers the classification; it never becomes an invented value.
 
-## Input contract
+## Required top-level objects
 
-A case is JSON with these required top-level fields:
+The strict contract is `schemas/research-case-v1.1.schema.json`. A complete case contains:
 
-- schema_version: string, currently 1;
-- case_id: stable lowercase identifier;
-- as_of: date on which the live view is stated;
-- research_cutoff: last date whose information may affect a replay;
-- question: one falsifiable decision question;
-- system_shift: one material change in demand, process, policy, technology, or system design;
-- constraints: candidate constraint nodes;
-- edges: dependency edges between system objects;
-- issuers: companies or instruments exposed to the causal chain;
-- evidence: evidence ledger;
-- gates: ordered gate states;
-- countercases: serious ways the thesis can fail;
-- disproof_plans: executable tests for countercases.
+```text
+ResearchRequest
+SecurityIdentity
+DataAvailabilityManifest
+SourceRecord[]
+Claim[]
+ClaimEvidenceLink[]
+DatedMetric[]
+CalculationRecord[]
+CapitalBridge[]
+SystemShift
+ConstraintAssessment[]
+DependencyEdge[]
+CustomerSignal[]
+IssuerProfile[]
+ExpectationGap
+GeoPolicyRisk
+MarketReflexivityAudit
+Countercase[]
+DisproofPlan[]
+ResearchGate[]
+CaseTransition[]
+```
 
-The public compiler may accept a private evidence overlay only when the overlay carries an access label. Private content is never emitted to a public report.
+## Epistemic and evidence states
 
-## Epistemic labels
+`FACT`, `INFERENCE`, `HYPOTHESIS`, and `UNKNOWN` describe a claim. `SUPPORTED`, `PARTIAL`, `STALE`, `CONTRADICTED`, `NOT_ESTABLISHED`, and `UNKNOWN` describe its evidence state. `CONTRADICTED` is not an epistemic type.
 
-- FACT: directly supported by a traceable source;
-- INFERENCE: a reasoned connection supported by one or more facts;
-- HYPOTHESIS: a proposed explanation or forward-looking claim;
-- UNKNOWN: not established;
-- CONTRADICTED: evidence materially conflicts with the claim.
+Evidence records describe a source observation. A claim is supported or contradicted through `ClaimEvidenceLink`; an evidence record does not carry a legacy `supports` boolean in v1.1.
 
-## Evidence states
+## Four clocks
 
-- SUPPORTED: current evidence supports the linked claim;
-- PARTIAL: some but not all required elements are supported;
-- STALE: the evidence has expired for the requested cutoff or live view;
-- CONTRADICTED: material evidence points the other way;
-- NOT_ESTABLISHED: a source exists but does not establish the claim.
+Every time-aware source or metric uses:
 
-## Ordered gates
+- `published_at`: when the source became public;
+- `known_at`: when the research process could know it;
+- `effective_at` or an effective period: what real-world period it describes;
+- `retrieved_at`: when the adapter collected it.
 
-G0 Identity & Time  
-G1 Dependency Necessity  
-G2 Constraint Reality  
-G3 Edge Verification  
-G4 Capture Proof  
-G5 Financial Transmission  
-G6 Expectation Test  
-G7 Disproof Readiness
+All date-times include an explicit timezone. A replay rejects supporting evidence whose `known_at` is after `research_cutoff`.
 
-Gate states are PASS, PARTIAL, UNKNOWN, STALE, FAIL, and CONTRADICTED. A downstream gate can be inspected while an earlier gate is unresolved, but it cannot be reported as PASS until all prerequisites pass.
+## Data availability
 
-## Supply state
+An adapter declares provider, markets, capabilities, latency class, entitlement status, freshness policy, and last error. Required capabilities include security identity, quotes, historical prices, corporate actions, filings, fundamentals, guidance, FX, consensus, contracts, policy, and technical sources.
 
-Use one of:
+The runtime may report `REALTIME`, `DELAYED`, `OFFICIAL_CLOSE`, `HISTORICAL`, or `UNKNOWN`. `UNKNOWN` is a valid result, not a failure to hide.
 
-NAMEPLATE, INSTALLED, OPERABLE, QUALIFIED, MERCHANT, CAPTIVE, UNCOMMITTED_AVAILABLE.
+## Constraint contract
 
-These describe different facts. Nameplate capacity is not proof of operable output; operable output is not proof of qualification; qualification is not proof of merchant availability; captive supply is not uncommitted supply.
+Every constraint contains exactly these 13 dimension assessments:
 
-## Classification
+1. `system_necessity`
+2. `route_around_difficulty`
+3. `qualified_supplier_depth`
+4. `qualification_friction`
+5. `supply_ramp_latency`
+6. `yield_stability`
+7. `capacity_observability`
+8. `merchant_supply_availability`
+9. `geographic_policy_concentration`
+10. `customer_commitment`
+11. `price_realization`
+12. `capture_retention`
+13. `capital_efficiency`
 
-- MAP_ONLY: the system is mapped but the constraint is not established;
-- CONSTRAINT_CASE: a constraint is supported but issuer economics are not bridged;
-- OPERATING_CASE: an issuer exposure and operating transmission are supported;
-- VARIANT_CASE: the operating case differs materially from market expectations;
-- RESEARCH_READY: all gates pass and the disproof plan is actionable;
-- INVALIDATED: a fatal countercase is supported.
+Each assessment has status, assessment text, as-of time, evidence IDs, counterevidence IDs, confidence, and unknowns. Supply is represented as parallel observations for the seven supply states; no state promotion is implicit.
 
-## Invariants
+## Market and calculation contract
 
-1. Every material claim has one or more evidence IDs or is explicitly UNKNOWN.
-2. Every evidence ID is unique and resolvable.
-3. Every evidence record has source type, locator, publication or known-at timing, retrieval time, access, and independence group.
-4. Evidence known after research_cutoff cannot support a replay.
-5. A private or restricted record cannot be used by a public surface.
-6. A dependency edge cannot be SUPPORTED without evidence.
-7. A QUALIFIED, MERCHANT, or UNCOMMITTED_AVAILABLE supply state cannot be inferred solely from NAMEPLATE or INSTALLED.
-8. A company capture claim cannot pass without an exposure path and economic mechanism.
-9. A market-cap value must reconcile to price × shares within the declared tolerance.
-10. A downstream PASS is invalid when any prerequisite is not PASS.
-11. Every material or fatal countercase has a disproof plan.
-12. Case transitions record the prior state, new state, timestamp, reason, and triggering evidence IDs.
+Every material number is a `DatedMetric`. Market capitalization is calculated from price and current shares when both are available. EV is calculated only when its components are appropriate for the instrument; for financial institutions it may be `NOT_APPLICABLE` rather than forced. Every calculation stores formula, input metric IDs, output metric ID, unit, and reproducibility status.
 
-## Report contract
+## Gate contract
 
-The compiler emits:
+The deterministic gate sequence is:
 
-1. Research Context
-2. Executive Finding
-3. System Shift
-4. Dependency Map
-5. Constraint Assessment
-6. Company / Issuer Exposure
-7. Capture Path
-8. Financial & Capital Bridge
-9. Market Expectation Gap
-10. Countercase
-11. Disproof Plan
-12. Unknowns & Next Checks
-13. Evidence Ledger
+```text
+G0 identity/time/data availability
+G1 system necessity
+G2 dependency edge authenticity
+G3 substitution/bypass
+G4 supply constraint
+G5 customer validation
+G6 issuer exposure/capture
+G7 financial transmission
+G8 market expectation
+G9 geographic/policy/resilience
+G10 reflexivity/disproof readiness
+```
 
-Every number has units, currency when relevant, an as-of date, and a source link or locator. Every conclusion includes confidence, classification, and promotion or invalidation conditions.
+The engine derives states from schema-validated canonical objects and compares them with asserted states. An asserted `PASS` cannot override a derived `UNKNOWN`, `PARTIAL`, `FAIL`, or `CONTRADICTED`. Release 1.2 uses local prerequisites rather than one global blocking ladder. Negative and incomplete research is valid; retain the full candidate assessment and explain why the constraint is rejected or unestablished. No edge or capital step needs to be invented. Report quality, thesis validity and price attractiveness are separate judgments.
+
+## Public/private rules
+
+Public output may use only publicly accessible or synthetic evidence. A restricted/private-derived claim needs independent public support before it can appear as a public fact. Raw source bodies, screenshots, subscription material, private paths, and private hashes remain outside this repository.

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:calculation-record",
+  "title": "Reproducible calculation record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["calculation_id", "calculation_type", "formula", "input_metric_ids", "output_metric_id", "unit", "status"],
+  "properties": {
+    "calculation_id": { "type": "string", "minLength": 3 },
+    "calculation_type": { "type": "string", "enum": ["MARKET_CAP", "ENTERPRISE_VALUE", "FX_CONVERSION", "BRIDGE_STEP", "OTHER"] },
+    "formula": { "type": "string", "minLength": 3 },
+    "input_metric_ids": { "type": "array", "items": { "type": "string" } },
+    "output_metric_id": { "type": "string", "minLength": 3 },
+    "unit": { "type": "string", "minLength": 1 },
+    "status": { "type": "string", "enum": ["REPRODUCIBLE", "PARTIAL", "UNKNOWN", "INVALID"] },
+    "notes": { "type": "string" }
+  }
+}

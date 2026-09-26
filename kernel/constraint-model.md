@@ -22,7 +22,7 @@ A constraint node has three layers:
 - capture_retention
 - capital_efficiency
 
-Record a value, evidence IDs, and an uncertainty label for each material dimension. A score without a reason is not an assessment.
+Record a status, assessment, as-of timestamp, evidence IDs, counterevidence IDs, confidence, and unknowns for every one of the 13 dimensions. A score without a reason is not an assessment; v1.1 does not use a single constraint score.
 
 ## State discipline
 

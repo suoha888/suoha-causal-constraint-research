@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:dated-metric",
+  "title": "Dated metric",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "metric_id",
+    "metric_name",
+    "value",
+    "unit",
+    "basis",
+    "observation_type",
+    "source_ids",
+    "published_at",
+    "known_at",
+    "effective_at",
+    "retrieved_at",
+    "time_precision",
+    "status"
+  ],
+  "properties": {
+    "metric_id": { "type": "string", "minLength": 3 },
+    "metric_name": { "type": "string", "minLength": 2 },
+    "value": { "type": ["number", "null"] },
+    "unit": { "type": "string", "minLength": 1 },
+    "currency": { "type": ["string", "null"] },
+    "basis": { "type": "string", "minLength": 2 },
+    "observation_type": {
+      "type": "string",
+      "enum": [
+        "MARKET_FACT", "REGULATORY_FACT", "COMPANY_REPORTED",
+        "CUSTOMER_REPORTED", "THIRD_PARTY_ESTIMATE", "MODEL_CALCULATION", "ASSUMPTION"
+      ]
+    },
+    "source_ids": { "type": "array", "items": { "type": "string" } },
+    "calculation_id": { "type": ["string", "null"] },
+    "published_at": { "type": ["string", "null"], "format": "date-time" },
+    "known_at": { "type": "string", "format": "date-time" },
+    "effective_at": { "type": ["string", "null"], "format": "date-time" },
+    "retrieved_at": { "type": "string", "format": "date-time" },
+    "time_precision": {
+      "type": "string",
+      "enum": ["SECOND", "MINUTE", "DATE", "PERIOD", "UNKNOWN"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["SUPPORTED", "PARTIAL", "STALE", "UNKNOWN", "CONTRADICTED"]
+    },
+    "notes": { "type": "string" }
+  }
+}

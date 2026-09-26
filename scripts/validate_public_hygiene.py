@@ -24,6 +24,7 @@ TEXT_SUFFIXES = {
     ".txt",
     ".py",
     ".json",
+    ".jsonl",
     ".yaml",
     ".yml",
     ".toml",
@@ -67,11 +68,12 @@ def read_hashes(path: Path) -> set[str]:
     return hashes
 
 
-def allowed_hosts(policy_path: Path) -> tuple[set[str], set[str]]:
+def allowed_hosts(policy_path: Path) -> tuple[set[str], set[str], set[str]]:
     hosts: set[str] = set()
     schemes: set[str] = set()
+    prefixes: set[str] = set()
     if not policy_path.exists():
-        return hosts, schemes
+        return hosts, schemes, prefixes
     section = None
     for raw in policy_path.read_text(encoding="utf-8").splitlines():
         line = raw.strip()
@@ -86,7 +88,9 @@ def allowed_hosts(policy_path: Path) -> tuple[set[str], set[str]]:
                 hosts.add(value.casefold())
             elif section == "allowed_schemes":
                 schemes.add(value.casefold())
-    return hosts, schemes
+            elif section == "allowed_url_prefixes":
+                prefixes.add(value.rstrip("/").casefold())
+    return hosts, schemes, prefixes
 
 
 def iter_files(root: Path):
@@ -121,8 +125,9 @@ def atom_candidates(text: str) -> set[str]:
 
 
 def git_text(root: Path) -> list[tuple[str, str]]:
+    records: list[tuple[str, str]] = []
     try:
-        output = subprocess.run(
+        messages = subprocess.run(
             ["git", "-C", str(root), "log", "--all", "--format=%B%x00"],
             check=False,
             capture_output=True,
@@ -132,12 +137,51 @@ def git_text(root: Path) -> list[tuple[str, str]]:
         ).stdout
     except OSError:
         return []
-    return [(".git/history", output)] if output else []
+    if messages:
+        records.append((".git/history-messages", messages))
+    try:
+        objects = subprocess.run(
+            ["git", "-C", str(root), "rev-list", "--objects", "--all"],
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        ).stdout
+    except OSError:
+        return records
+    for line in objects.splitlines():
+        object_id, _, object_path = line.partition(" ")
+        if not object_id:
+            continue
+        kind = subprocess.run(
+            ["git", "-C", str(root), "cat-file", "-t", object_id],
+            check=False,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        ).stdout.strip()
+        if kind != "blob":
+            continue
+        raw = subprocess.run(
+            ["git", "-C", str(root), "cat-file", "-p", object_id],
+            check=False,
+            capture_output=True,
+        ).stdout
+        if len(raw) > 2_000_000:
+            continue
+        try:
+            text = raw.decode("utf-8")
+        except UnicodeDecodeError:
+            continue
+        records.append((f".git/blob/{object_id}/{object_path or 'unknown'}", text))
+    return records
 
 
 def scan(root: Path, blocked: set[str], policy: Path) -> dict[str, object]:
     violations: list[dict[str, object]] = []
-    hosts, schemes = allowed_hosts(policy)
+    hosts, schemes, prefixes = allowed_hosts(policy)
     for path in iter_files(root):
         relative = str(path.relative_to(root)).replace("\\", "/")
         try:
@@ -154,7 +198,12 @@ def scan(root: Path, blocked: set[str], policy: Path) -> dict[str, object]:
             parsed = urlsplit(cleaned)
             host = (parsed.hostname or "").casefold().rstrip(".")
             scheme = parsed.scheme.casefold()
-            if scheme not in schemes or host not in hosts:
+            prefix_hosts = {urlsplit(prefix).hostname for prefix in prefixes}
+            prefix_match = any(cleaned.casefold().startswith(prefix) for prefix in prefixes)
+            allowed_by_host = scheme in schemes and (host in hosts or host in prefix_hosts)
+            if host in prefix_hosts:
+                allowed_by_host = allowed_by_host and prefix_match
+            if not allowed_by_host:
                 violations.append(
                     {
                         "type": "disallowed_link",

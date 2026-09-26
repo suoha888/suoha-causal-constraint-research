@@ -2,84 +2,62 @@
 
 ## Product shape
 
-The project is a small compiler with four layers:
+The project is a research compiler with five layers:
 
-1. Intake: normalize the question, scope, cutoff, and access level.
-2. Causal model: represent system shifts, dependencies, constraints, supply states, issuer exposure, capture, and capital transmission.
-3. Evidence and gates: attach provenance, temporal validity, independence, uncertainty, and ordered gate decisions.
-4. Report and evaluation: compile the case, expose unknowns, run disproof tests, and validate the public surface.
+1. **Identity and capability** — resolve the security and declare available data.
+2. **Evidence and claims** — preserve source perspective, independence, four clocks, rights, and claim/evidence links.
+3. **Causal constraint graph** — model system shifts, dependency edges, alternatives, 13 constraint dimensions, parallel supply states, and customer signals.
+4. **Issuer economics** — model exposure, capture, financial transmission, market state, calculations, and expectation gaps.
+5. **Gates and report** — derive deterministic gates, preserve case transitions, compile unknowns and disproof tests.
 
-## Core objects
+## Canonical graph
 
-- ResearchCase: the complete dated investigation.
-- SystemShift: the external change that creates or enlarges a dependency.
-- DependencyMap: directed links between processes, inputs, outputs, customers, and alternatives.
-- DependencyEdge: one claim that a source, process, or issuer is required or advantaged.
-- ConstraintNode: a bottleneck candidate with necessity, friction, state, and evidence.
-- SupplyState: the observed state of capacity, never an inferred ladder.
-- IssuerProfile: the company or instrument’s role and direct exposure.
-- CapturePath: the mechanism by which system value becomes issuer economics.
-- CapitalBridge: the path from operating change to cash flow, funding, dilution, and per-share value.
-- MarketState: dated price, shares, market value, valuation basis, and expectations.
-- ExpectationGap: the difference between market-implied and research-implied outcomes.
-- Countercase: a failure mode with severity, evidence, and response.
-- DisproofPlan: a measurable test for a countercase or thesis claim.
-- EvidenceLedger: the provenance table for every material assertion.
-- CaseTransition: an immutable state change with a reason and trigger.
+```text
+SecurityIdentity
+      ↓
+DataAvailabilityManifest → SourceRecord → Claim ↔ ClaimEvidenceLink
+      ↓                                  ↓
+SystemShift → DependencyEdge → ConstraintAssessment → SupplyStateObservation
+                                      ↓                    ↓
+                              CustomerSignal → IssuerProfile
+                                                    ↓
+                                    CapitalBridge → MarketState
+                                                    ↓
+                                      ExpectationGap / ReflexivityAudit
+                                                    ↓
+                                      Countercase / DisproofPlan
+```
 
-## State machines
+There is one canonical schema per object. `research-case-v1.1.schema.json` composes those schemas; it does not duplicate a weaker embedded definition.
 
-### Case
+## Causal discipline
 
-    DRAFT -> EVIDENCE_BUILDING -> TESTABLE -> SUPPORTED -> STRENGTHENED
-                                                    |-> WEAKENED
-                                                    |-> REVISED
-                                                    |-> INVALIDATED
-                                                    |-> CLOSED
-
-No state can be skipped without a transition record. INVALIDATED and CLOSED are terminal for the current case version.
-
-### Evidence
-
-    NOT_ESTABLISHED -> PARTIAL -> SUPPORTED
-                    \-> STALE
-                    \-> CONTRADICTED
-
-New evidence creates a new ledger entry; it does not silently rewrite the old record.
-
-### Gate
-
-Each gate is evaluated independently, but downstream promotion is ordered:
-
-    G0 -> G1 -> G2 -> G3 -> G4 -> G5 -> G6 -> G7
-
-Inspection may be parallel; PASS is not. The first failed prerequisite limits the public classification.
-
-## Causal separation
-
-The compiler keeps four questions separate:
+Keep these questions separate:
 
 1. Is the system change real?
-2. Is the dependency or constraint necessary?
-3. Is the issuer exposed to it?
-4. Can the issuer retain the economics?
+2. Is the dependency necessary and difficult to bypass?
+3. Is the supplier/customer edge real and qualified?
+4. Is the issuer exposed to the edge?
+5. Can the issuer retain the economics after alternatives, capex, working capital, financing, and dilution?
+6. Is the market expectation observably different from the research case?
+7. What would prove the case wrong?
 
-An issuer can have high exposure and low capture. A constraint can be real and still be a poor investment if alternatives, price caps, or dilution absorb the value.
+Strategic importance does not imply shareholder value. Exposure does not imply capture. A price move does not imply independent validation.
 
-## Temporal semantics
+## State semantics
 
-Every source has at least three clocks:
+The seven supply labels are parallel facts, not a state machine:
 
-- published_at: when the source became public;
-- known_at: when the fact was knowable to the research process;
-- retrieved_at: when the system collected it.
+```text
+NAMEPLATE | INSTALLED | OPERABLE | QUALIFIED | MERCHANT | CAPTIVE | UNCOMMITTED_AVAILABLE
+```
 
-For replay, known_at must be on or before research_cutoff. For a live view, retrieved_at and as_of are shown. An evidence record with an unknown clock is UNKNOWN, not silently current.
+The case state machine remains append-only. Corrections create a new transition and never rewrite what was knowable at an earlier cutoff.
 
-## Access semantics
+## Gate semantics
 
-Access levels are PUBLIC, RESTRICTED, PRIVATE, and SYNTHETIC. An overlay may preserve the claim ID, hash, source type, and access level without exposing the source body. Public compilation excludes restricted and private evidence and reports the resulting uncertainty.
+`scripts/gate_engine.py` derives eleven candidate-thesis support gates after schema and semantic validation. Dependencies are local: identity -> edges; necessity + edges + bypass -> constraint; edges + customers -> capture; capture -> transmission; identity + transmission -> expectations. Policy and reflexivity facts do not disappear merely because valuation is unknown. Classification is a legacy support-path label, not report quality. Invalid contracts have no trustworthy derived classification. Separate outcomes disclose coverage, evidence sufficiency, thesis state and the boundary of valuation judgment.
 
-## Evaluation
+## Runtime boundary
 
-The evaluation suite tests temporal leakage, unsupported supply promotion, gate compensation, market arithmetic, private-source taint, countercase completeness, provenance, adversarial prompts, and output hygiene. Quality is measured by invariant violations and human auditability, not by report length.
+The public runtime provides the contract and validation behavior. It does not grant market-data entitlements. A live adapter must satisfy `contracts/data-availability.md`, expose the source and time fields, and fail closed to `UNKNOWN` when it cannot verify freshness or rights.

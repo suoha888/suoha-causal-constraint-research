@@ -1,1 +1,2 @@
 {"id":"synthetic-valid","fixture":"examples/synthetic-case.json","expected":"accept","checks":["ordered gates","dated evidence","supply state","capture bridge","market arithmetic"]}
+{"id":"synthetic-v11-valid","fixture":"examples/synthetic-case-v1.1.json","expected":"accept","checks":["identity","data availability","13 dimensions","parallel supply states","customer validation","calculation ledger","reflexivity"]}

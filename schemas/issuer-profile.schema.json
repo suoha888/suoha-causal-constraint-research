@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:issuer-profile",
+  "title": "Issuer profile and economic exposure",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "legal_name", "ticker", "exchange", "country", "role", "exposure_status", "capture_status", "market", "capital_bridge_steps"],
+  "properties": {
+    "id": { "type": "string", "minLength": 3 },
+    "legal_name": { "type": "string", "minLength": 2 },
+    "ticker": { "type": "string", "minLength": 1 },
+    "exchange": { "type": "string", "minLength": 2 },
+    "country": { "type": "string", "minLength": 2 },
+    "reporting_currency": { "type": ["string", "null"] },
+    "trading_currency": { "type": ["string", "null"] },
+    "role": { "type": "string", "minLength": 3 },
+    "business_segments": { "type": "array", "items": { "type": "string" } },
+    "revenue_mix": { "type": "array", "items": { "type": "string" } },
+    "customer_concentration": { "type": ["string", "null"] },
+    "competitors": { "type": "array", "items": { "type": "string" } },
+    "substitutes": { "type": "array", "items": { "type": "string" } },
+    "exposure_status": { "type": "string", "enum": ["SUPPORTED", "PARTIAL", "UNKNOWN", "NOT_ESTABLISHED"] },
+    "exposure_claim_ids": { "type": "array", "items": { "type": "string" } },
+    "capture_status": { "type": "string", "enum": ["SUPPORTED", "PARTIAL", "UNKNOWN", "NOT_ESTABLISHED"] },
+    "capture_mechanism": { "type": "string", "minLength": 3 },
+    "leakage_risks": { "type": "array", "items": { "type": "string" } },
+    "market": { "$ref": "market-state.schema.json" },
+    "capital_bridge_steps": { "type": "array", "items": { "type": "string" } },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } }
+  }
+}

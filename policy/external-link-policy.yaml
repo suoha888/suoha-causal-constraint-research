@@ -5,6 +5,7 @@ allowed_hosts:
   - www.sec.gov
   - investor.gov
   - data.sec.gov
+  - investor.nvidia.com
   - europa.eu
   - ec.europa.eu
   - nasdaq.com
@@ -15,6 +16,9 @@ allowed_hosts:
   - suoha.example
 allowed_schemes:
   - https
+allowed_url_prefixes:
+  - https://github.com/suoha888/suoha-causal-constraint-research
+  - https://raw.githubusercontent.com/suoha888/suoha-causal-constraint-research/
 notes:
   - "Public documentation may link to standards, regulators, exchanges, and project-owned documentation."
   - "Personal profiles, social feeds, newsletters, and source archives are not public documentation dependencies."

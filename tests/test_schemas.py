@@ -19,6 +19,32 @@ class SchemaTests(unittest.TestCase):
             self.assertIn("json-schema.org", schema["$schema"], path.name)
             self.assertTrue(schema["$id"].startswith("urn:suoha:"), path.name)
 
+    def test_v11_schema_is_primary_strict_contract(self) -> None:
+        path = ROOT / "schemas" / "research-case-v1.1.schema.json"
+        schema = json.loads(path.read_text(encoding="utf-8"))
+        self.assertEqual(schema["properties"]["schema_version"]["const"], "1.1")
+        required = set(schema["required"])
+        self.assertTrue({"data_availability", "claims", "metrics", "calculations", "reflexivity_audit"} <= required)
+
+    def test_external_schema_references_resolve(self) -> None:
+        for path in (ROOT / "schemas").glob("*.json"):
+            schema = json.loads(path.read_text(encoding="utf-8"))
+            refs = []
+
+            def walk(value):
+                if isinstance(value, dict):
+                    if isinstance(value.get("$ref"), str) and not value["$ref"].startswith("#/"):
+                        refs.append(value["$ref"].split("#", 1)[0])
+                    for child in value.values():
+                        walk(child)
+                elif isinstance(value, list):
+                    for child in value:
+                        walk(child)
+
+            walk(schema)
+            for reference in refs:
+                self.assertTrue((path.parent / reference).exists(), f"{path.name}: {reference}")
+
 
 if __name__ == "__main__":
     unittest.main()

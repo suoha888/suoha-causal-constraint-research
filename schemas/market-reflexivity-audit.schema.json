@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:market-reflexivity-audit",
+  "title": "Market reflexivity audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["audit_id", "publicity_originated", "publication_precedes_price_move", "liquidity_state", "volume_discontinuity", "independent_fundamental_confirmation", "price_action_independent", "status", "evidence_ids"],
+  "properties": {
+    "audit_id": { "type": "string", "minLength": 3 },
+    "research_publication_time": { "type": ["string", "null"], "format": "date-time" },
+    "price_move_start": { "type": ["string", "null"], "format": "date-time" },
+    "publicity_originated": { "type": "string", "enum": ["YES", "NO", "UNKNOWN"] },
+    "publication_precedes_price_move": { "type": "string", "enum": ["YES", "NO", "UNKNOWN"] },
+    "liquidity_state": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW", "UNKNOWN"] },
+    "volume_discontinuity": { "type": "string", "enum": ["YES", "NO", "UNKNOWN"] },
+    "social_attention_change": { "type": "string" },
+    "independent_fundamental_event": { "type": "string" },
+    "independent_fundamental_confirmation": { "type": "string", "enum": ["YES", "NO", "PARTIAL", "UNKNOWN"] },
+    "price_action_independent": { "type": "string", "enum": ["YES", "NO", "UNKNOWN"] },
+    "status": { "type": "string", "enum": ["SUPPORTED", "PARTIAL", "UNKNOWN", "NOT_ESTABLISHED"] },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } }
+  }
+}

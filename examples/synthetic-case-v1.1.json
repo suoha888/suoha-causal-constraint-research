@@ -1,0 +1,317 @@
+{
+  "schema_version": "1.1",
+  "case_id": "synthetic-thermal-interface-v1-1",
+  "as_of": "2026-09-18T14:00:00Z",
+  "research_cutoff": "2026-09-18T14:00:00Z",
+  "question": "Does the fictional issuer convert a qualified supply constraint into durable per-share economics?",
+  "security_identity": {
+    "issuer_id": "issuer-aurora-grid-components",
+    "legal_name": "Aurora Grid Components Ltd",
+    "ticker": "AGC",
+    "exchange": "SYNTHETIC",
+    "mic": null,
+    "security_type": "COMMON_STOCK",
+    "primary_listing": "SYNTHETIC",
+    "country": "Syntheticland",
+    "trading_currency": "USD",
+    "reporting_currency": "USD",
+    "regulator_id": null,
+    "status": "SUPPORTED",
+    "evidence_ids": ["ev-market"]
+  },
+  "data_availability": {
+    "manifest_id": "availability-synthetic-001",
+    "as_of": "2026-09-18T14:00:00Z",
+    "adapters": [
+      {
+        "adapter_id": "synthetic-market-and-filings",
+        "provider": "project-authored-fixture",
+        "capabilities": ["SECURITY_IDENTITY", "OFFICIAL_CLOSE", "FUNDAMENTALS", "CUSTOMER_SIGNAL", "POLICY"],
+        "markets": ["SYNTHETIC"],
+        "availability": "AVAILABLE",
+        "latency_class": "BATCH",
+        "entitlement_status": "ENTITLED",
+        "last_success_at": "2026-09-18T14:00:00Z",
+        "last_error": null,
+        "freshness_policy": "Fixture values are valid only at the declared cutoff."
+      }
+    ]
+  },
+  "system_shift": {
+    "claim_id": "claim-system-shift",
+    "description": "Higher rack density increases the need for qualified thermal-interface material.",
+    "status": "SUPPORTED",
+    "event_date": "2026-09-10T00:00:00Z",
+    "evidence_ids": ["ev-system"]
+  },
+  "claims": [
+    {
+      "claim_id": "claim-system-shift",
+      "statement": "The fictional platform shift increases demand for qualified thermal-interface material.",
+      "subject": "fictional-platform",
+      "predicate": "increases_demand_for",
+      "object": "thermal-interface-material",
+      "scope": "fictional platform route",
+      "epistemic_type": "FACT",
+      "evidence_state": "SUPPORTED",
+      "as_of": "2026-09-18T14:00:00Z",
+      "confidence": 0.95,
+      "evidence_links": ["link-system"],
+      "counterevidence_links": [],
+      "unknowns": [],
+      "derivation_access": "SYNTHETIC"
+    },
+    {
+      "claim_id": "claim-edge",
+      "statement": "Aurora supplies the qualified interface material used by the fictional platform route.",
+      "subject": "issuer-aurora-grid-components",
+      "predicate": "supplies",
+      "object": "thermal-interface-material",
+      "scope": "fictional platform route",
+      "epistemic_type": "FACT",
+      "evidence_state": "SUPPORTED",
+      "as_of": "2026-09-18T14:00:00Z",
+      "confidence": 0.9,
+      "evidence_links": ["link-edge", "link-issuer"],
+      "counterevidence_links": [],
+      "unknowns": [],
+      "derivation_access": "SYNTHETIC"
+    },
+    {
+      "claim_id": "claim-customer",
+      "statement": "Two fictional customers have qualified the current material generation.",
+      "subject": "thermal-interface-material",
+      "predicate": "has_customer_qualification",
+      "object": "two-fictional-customers",
+      "scope": "current generation",
+      "epistemic_type": "FACT",
+      "evidence_state": "SUPPORTED",
+      "as_of": "2026-09-18T14:00:00Z",
+      "confidence": 0.88,
+      "evidence_links": ["link-customer"],
+      "counterevidence_links": [],
+      "unknowns": [],
+      "derivation_access": "SYNTHETIC"
+    },
+    {
+      "claim_id": "claim-market",
+      "statement": "The declared official close and share count imply a synthetic market capitalization of USD 420 million.",
+      "subject": "issuer-aurora-grid-components",
+      "predicate": "has_market_cap",
+      "object": "420000000 USD",
+      "scope": "2026-09-16 official close",
+      "epistemic_type": "INFERENCE",
+      "evidence_state": "SUPPORTED",
+      "as_of": "2026-09-18T14:00:00Z",
+      "confidence": 1.0,
+      "evidence_links": ["link-market"],
+      "counterevidence_links": [],
+      "unknowns": [],
+      "derivation_access": "SYNTHETIC"
+    }
+  ],
+  "claim_evidence_links": [
+    { "link_id": "link-system", "claim_id": "claim-system-shift", "evidence_id": "ev-system", "relation": "DIRECT_SUPPORT", "support_scope": "system shift" },
+    { "link_id": "link-edge", "claim_id": "claim-edge", "evidence_id": "ev-edge", "relation": "DIRECT_SUPPORT", "support_scope": "supplier relationship" },
+    { "link_id": "link-issuer", "claim_id": "claim-edge", "evidence_id": "ev-issuer", "relation": "CONTEXT", "support_scope": "issuer role" },
+    { "link_id": "link-customer", "claim_id": "claim-customer", "evidence_id": "ev-customer", "relation": "DIRECT_SUPPORT", "support_scope": "qualification" },
+    { "link_id": "link-market", "claim_id": "claim-market", "evidence_id": "ev-market", "relation": "DIRECT_SUPPORT", "support_scope": "price and shares" }
+  ],
+  "evidence": [
+    { "evidence_id": "ev-system", "source_type": "synthetic system fixture", "source_locator": "synthetic://system-shift", "source_perspective": "SYNTHETIC", "published_at": "2026-09-10T00:00:00Z", "known_at": "2026-09-10T00:00:00Z", "effective_at": "2026-09-10T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-system", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-edge", "source_type": "synthetic supply-chain fixture", "source_locator": "synthetic://dependency-edge", "source_perspective": "SYNTHETIC", "published_at": "2026-09-11T00:00:00Z", "known_at": "2026-09-11T00:00:00Z", "effective_at": "2026-09-11T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-edge", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-supply", "source_type": "synthetic capacity fixture", "source_locator": "synthetic://supply-state", "source_perspective": "SYNTHETIC", "published_at": "2026-09-12T00:00:00Z", "known_at": "2026-09-12T00:00:00Z", "effective_at": "2026-09-12T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-supply", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-customer", "source_type": "synthetic customer fixture", "source_locator": "synthetic://customer-validation", "source_perspective": "CUSTOMER", "published_at": "2026-09-13T00:00:00Z", "known_at": "2026-09-13T00:00:00Z", "effective_at": "2026-09-13T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-customer", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-issuer", "source_type": "synthetic issuer fixture", "source_locator": "synthetic://issuer-profile", "source_perspective": "ISSUER", "published_at": "2026-09-14T00:00:00Z", "known_at": "2026-09-14T00:00:00Z", "effective_at": "2026-09-14T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-issuer", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-market", "source_type": "synthetic official close fixture", "source_locator": "synthetic://market-state", "source_perspective": "EXCHANGE", "published_at": "2026-09-16T00:00:00Z", "known_at": "2026-09-16T00:00:00Z", "effective_at": "2026-09-16T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-market", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-financial", "source_type": "synthetic financial fixture", "source_locator": "synthetic://capital-bridge", "source_perspective": "ISSUER", "published_at": "2026-09-15T00:00:00Z", "known_at": "2026-09-15T00:00:00Z", "effective_at": "2026-09-15T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-finance", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-geo", "source_type": "synthetic policy fixture", "source_locator": "synthetic://geo-policy", "source_perspective": "GOVERNMENT", "published_at": "2026-09-15T00:00:00Z", "known_at": "2026-09-15T00:00:00Z", "effective_at": "2026-09-15T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-geo", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-reflexivity", "source_type": "synthetic market behavior fixture", "source_locator": "synthetic://reflexivity", "source_perspective": "MARKET_DATA_PROVIDER", "published_at": "2026-09-16T00:00:00Z", "known_at": "2026-09-16T00:00:00Z", "effective_at": "2026-09-16T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-reflexivity", "evidence_state": "SUPPORTED" },
+    { "evidence_id": "ev-expectation", "source_type": "synthetic expectation fixture", "source_locator": "synthetic://expectation-gap", "source_perspective": "MARKET_DATA_PROVIDER", "published_at": "2026-09-16T00:00:00Z", "known_at": "2026-09-16T00:00:00Z", "effective_at": "2026-09-16T00:00:00Z", "effective_from": null, "effective_to": null, "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "access_class": "SYNTHETIC", "redistribution_rights": "ALLOWED", "citation_status": "CITABLE", "independence_group": "synthetic-expectation", "evidence_state": "SUPPORTED" }
+  ],
+  "metrics": [
+    { "metric_id": "metric-price", "metric_name": "official_close", "value": 42.0, "unit": "USD/share", "currency": "USD", "basis": "2026-09-16 official close", "observation_type": "MARKET_FACT", "source_ids": ["ev-market"], "calculation_id": null, "published_at": "2026-09-16T00:00:00Z", "known_at": "2026-09-16T00:00:00Z", "effective_at": "2026-09-16T00:00:00Z", "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "status": "SUPPORTED" },
+    { "metric_id": "metric-shares", "metric_name": "shares_outstanding", "value": 10000000, "unit": "shares", "currency": null, "basis": "latest declared share count", "observation_type": "REGULATORY_FACT", "source_ids": ["ev-market"], "calculation_id": null, "published_at": "2026-09-16T00:00:00Z", "known_at": "2026-09-16T00:00:00Z", "effective_at": "2026-09-16T00:00:00Z", "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "status": "SUPPORTED" },
+    { "metric_id": "metric-market-cap", "metric_name": "market_cap", "value": 420000000, "unit": "USD", "currency": "USD", "basis": "price multiplied by shares outstanding", "observation_type": "MODEL_CALCULATION", "source_ids": ["ev-market"], "calculation_id": "calc-market-cap", "published_at": null, "known_at": "2026-09-18T14:00:00Z", "effective_at": "2026-09-16T00:00:00Z", "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "status": "SUPPORTED" },
+    { "metric_id": "metric-debt", "metric_name": "debt", "value": 50000000, "unit": "USD", "currency": "USD", "basis": "latest synthetic balance sheet", "observation_type": "COMPANY_REPORTED", "source_ids": ["ev-financial"], "calculation_id": null, "published_at": "2026-09-15T00:00:00Z", "known_at": "2026-09-15T00:00:00Z", "effective_at": "2026-09-15T00:00:00Z", "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "status": "SUPPORTED" },
+    { "metric_id": "metric-cash", "metric_name": "cash", "value": 70000000, "unit": "USD", "currency": "USD", "basis": "latest synthetic balance sheet", "observation_type": "COMPANY_REPORTED", "source_ids": ["ev-financial"], "calculation_id": null, "published_at": "2026-09-15T00:00:00Z", "known_at": "2026-09-15T00:00:00Z", "effective_at": "2026-09-15T00:00:00Z", "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "status": "SUPPORTED" },
+    { "metric_id": "metric-ev", "metric_name": "enterprise_value", "value": 400000000, "unit": "USD", "currency": "USD", "basis": "market cap plus debt minus cash", "observation_type": "MODEL_CALCULATION", "source_ids": ["ev-market", "ev-financial"], "calculation_id": "calc-ev", "published_at": null, "known_at": "2026-09-18T14:00:00Z", "effective_at": "2026-09-16T00:00:00Z", "retrieved_at": "2026-09-18T14:00:00Z", "time_precision": "DATE", "status": "SUPPORTED" }
+  ],
+  "capital_bridges": [
+    {"bridge_id":"bridge-synthetic","status":"SUPPORTED","evidence_ids":["ev-financial"],"steps":[
+      {"step_id":"bridge-demand-volume","stage":"VOLUME","from_metric":"qualified demand","to_metric":"unit volume","mechanism":"Synthetic customer demand converts to shipments; scenario is not a forecast.","input_type":"VERIFIED","baseline":100,"scenario":120,"unit":"units","period":"synthetic annual scenario","evidence_ids":["ev-financial"]},
+      {"step_id":"bridge-volume-revenue","stage":"REVENUE","from_metric":"unit volume","to_metric":"revenue","mechanism":"Synthetic constant price times unit volume.","input_type":"VERIFIED","baseline":1000,"scenario":1200,"unit":"USD","period":"synthetic annual scenario","evidence_ids":["ev-financial"]},
+      {"step_id":"bridge-gross-profit","stage":"GROSS_PROFIT","from_metric":"revenue","to_metric":"gross profit","mechanism":"Synthetic 30 percent gross margin after product costs.","input_type":"VERIFIED","baseline":300,"scenario":360,"unit":"USD","period":"synthetic annual scenario","evidence_ids":["ev-financial"]},
+      {"step_id":"bridge-revenue-cash","stage":"OPERATING_CASH","from_metric":"gross profit","to_metric":"operating cash","mechanism":"Synthetic cash after operating costs, taxes and working capital.","input_type":"VERIFIED","baseline":150,"scenario":180,"unit":"USD","period":"synthetic annual scenario","evidence_ids":["ev-financial"]},
+      {"step_id":"bridge-reinvestment","stage":"REINVESTMENT","from_metric":"operating cash","to_metric":"free cash flow","mechanism":"Synthetic capex of 50 and 60 respectively deducted from operating cash.","input_type":"VERIFIED","baseline":100,"scenario":120,"unit":"USD","period":"synthetic annual scenario","evidence_ids":["ev-financial"]},
+      {"step_id":"bridge-financing","stage":"FINANCING","from_metric":"free cash flow","to_metric":"cash to equity","mechanism":"Synthetic net financing is zero; ten million diluted shares unchanged in the scenario.","input_type":"VERIFIED","baseline":100,"scenario":120,"unit":"USD","period":"synthetic annual scenario","evidence_ids":["ev-financial"]},
+      {"step_id":"bridge-cash-per-share","stage":"PER_SHARE","from_metric":"cash to equity","to_metric":"cash per diluted share","mechanism":"Synthetic cash divided by ten million unchanged diluted shares; tiny fictional values are a structural example only.","input_type":"VERIFIED","baseline":0.00001,"scenario":0.000012,"unit":"USD/share","period":"synthetic annual scenario","evidence_ids":["ev-financial"]}
+    ]}
+  ],
+  "calculations": [
+    { "calculation_id": "calc-market-cap", "calculation_type": "MARKET_CAP", "formula": "metric-price * metric-shares", "input_metric_ids": ["metric-price", "metric-shares"], "output_metric_id": "metric-market-cap", "unit": "USD", "status": "REPRODUCIBLE" },
+    { "calculation_id": "calc-ev", "calculation_type": "ENTERPRISE_VALUE", "formula": "metric-market-cap + metric-debt - metric-cash", "input_metric_ids": ["metric-market-cap", "metric-debt", "metric-cash"], "output_metric_id": "metric-ev", "unit": "USD", "status": "REPRODUCIBLE" }
+  ],
+  "constraints": [
+    {
+      "constraint_id": "constraint-thermal-interface",
+      "label": "Qualified thermal interface material for the fictional platform",
+      "dimension_assessments": [
+        { "dimension": "system_necessity", "status": "SUPPORTED", "assessment": "The route needs this material class.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-system"], "counterevidence_ids": [], "confidence": 0.95, "unknowns": [] },
+        { "dimension": "route_around_difficulty", "status": "SUPPORTED", "assessment": "Redesign and alternative materials require qualification.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-supply"], "counterevidence_ids": [], "confidence": 0.8, "unknowns": [] },
+        { "dimension": "qualified_supplier_depth", "status": "SUPPORTED", "assessment": "Only a small number of suppliers are qualified.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-supply"], "counterevidence_ids": [], "confidence": 0.8, "unknowns": [] },
+        { "dimension": "qualification_friction", "status": "SUPPORTED", "assessment": "Qualification requires a long validation cycle.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-customer"], "counterevidence_ids": [], "confidence": 0.85, "unknowns": [] },
+        { "dimension": "supply_ramp_latency", "status": "SUPPORTED", "assessment": "Process expansion cannot instantly create qualified output.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-supply"], "counterevidence_ids": [], "confidence": 0.78, "unknowns": [] },
+        { "dimension": "yield_stability", "status": "SUPPORTED", "assessment": "The fixture reports stable qualified yield.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-supply"], "counterevidence_ids": [], "confidence": 0.78, "unknowns": [] },
+        { "dimension": "capacity_observability", "status": "SUPPORTED", "assessment": "Capacity observations are dated and scoped.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-supply"], "counterevidence_ids": [], "confidence": 0.8, "unknowns": [] },
+        { "dimension": "merchant_supply_availability", "status": "SUPPORTED", "assessment": "Merchant and captive capacity are separated.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-supply"], "counterevidence_ids": [], "confidence": 0.8, "unknowns": [] },
+        { "dimension": "geographic_policy_concentration", "status": "SUPPORTED", "assessment": "The synthetic geography and policy exposure are recorded.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-geo"], "counterevidence_ids": [], "confidence": 0.75, "unknowns": [] },
+        { "dimension": "customer_commitment", "status": "SUPPORTED", "assessment": "Customer qualification is independently represented.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-customer"], "counterevidence_ids": [], "confidence": 0.85, "unknowns": [] },
+        { "dimension": "price_realization", "status": "SUPPORTED", "assessment": "The fixture records stable contract pricing.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-issuer"], "counterevidence_ids": [], "confidence": 0.75, "unknowns": [] },
+        { "dimension": "capture_retention", "status": "SUPPORTED", "assessment": "Qualification friction supports partial retention.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-issuer"], "counterevidence_ids": [], "confidence": 0.75, "unknowns": [] },
+        { "dimension": "capital_efficiency", "status": "SUPPORTED", "assessment": "Expansion funding and dilution are represented in the bridge.", "as_of": "2026-09-18T14:00:00Z", "evidence_ids": ["ev-financial"], "counterevidence_ids": [], "confidence": 0.7, "unknowns": [] }
+      ],
+      "supply_states": [
+        { "state_type": "NAMEPLATE", "quantity": 100, "unit": "relative capacity", "scope": "global synthetic facility", "facility_or_product": "thermal-interface-material", "as_of": "2026-09-18T14:00:00Z", "epistemic_type": "FACT", "evidence_state": "SUPPORTED", "evidence_ids": ["ev-supply"], "unknowns": [] },
+        { "state_type": "INSTALLED", "quantity": 90, "unit": "relative capacity", "scope": "global synthetic facility", "facility_or_product": "thermal-interface-material", "as_of": "2026-09-18T14:00:00Z", "epistemic_type": "FACT", "evidence_state": "SUPPORTED", "evidence_ids": ["ev-supply"], "unknowns": [] },
+        { "state_type": "OPERABLE", "quantity": 80, "unit": "relative capacity", "scope": "global synthetic facility", "facility_or_product": "thermal-interface-material", "as_of": "2026-09-18T14:00:00Z", "epistemic_type": "FACT", "evidence_state": "SUPPORTED", "evidence_ids": ["ev-supply"], "unknowns": [] },
+        { "state_type": "QUALIFIED", "quantity": 60, "unit": "relative capacity", "scope": "qualified customers", "facility_or_product": "thermal-interface-material", "as_of": "2026-09-18T14:00:00Z", "epistemic_type": "FACT", "evidence_state": "SUPPORTED", "evidence_ids": ["ev-supply", "ev-customer"], "unknowns": [] },
+        { "state_type": "MERCHANT", "quantity": 20, "unit": "relative capacity", "scope": "merchant supply", "facility_or_product": "thermal-interface-material", "as_of": "2026-09-18T14:00:00Z", "epistemic_type": "FACT", "evidence_state": "SUPPORTED", "evidence_ids": ["ev-supply"], "unknowns": [] },
+        { "state_type": "CAPTIVE", "quantity": 40, "unit": "relative capacity", "scope": "reserved for owner internal use, not contracted external customers", "facility_or_product": "thermal-interface-material", "as_of": "2026-09-18T14:00:00Z", "epistemic_type": "FACT", "evidence_state": "SUPPORTED", "evidence_ids": ["ev-supply"], "unknowns": [] },
+        { "state_type": "UNCOMMITTED_AVAILABLE", "quantity": 5, "unit": "relative capacity", "scope": "available to new buyers", "facility_or_product": "thermal-interface-material", "as_of": "2026-09-18T14:00:00Z", "epistemic_type": "FACT", "evidence_state": "SUPPORTED", "evidence_ids": ["ev-supply"], "unknowns": [] }
+      ],
+      "primary_state": "QUALIFIED",
+      "status": "SUPPORTED",
+      "evidence_ids": ["ev-system", "ev-supply", "ev-customer", "ev-geo", "ev-financial"]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-aurora-qualified-material",
+      "from": "issuer-aurora-grid-components",
+      "to": "fictional-platform",
+      "product_or_process": "qualified thermal-interface material",
+      "relationship_type": "QUALIFIED_SUPPLIER",
+      "relationship_scope": "current fictional platform route",
+      "epistemic_type": "FACT",
+      "status": "SUPPORTED",
+      "effective_from": "2026-09-11T00:00:00Z",
+      "effective_to": null,
+      "qualification_status": "QUALIFIED",
+      "customer_status": "CONFIRMED",
+      "evidence_ids": ["ev-edge", "ev-issuer"],
+      "counterevidence_ids": [],
+      "alternative_edges": ["alternative-second-source", "alternative-material-redesign"],
+      "confidence": 0.9
+    }
+  ],
+  "customer_signals": [
+    { "signal_id": "customer-signal-qualification", "signal_type": "QUALIFICATION", "customer_id": "customer-pair-01", "customer_identity_status": "NAMED", "supplier_id": "issuer-aurora-grid-components", "binding_status": "BINDING", "quantity": null, "currency": null, "effective_period": "2026-Q3", "evidence_ids": ["ev-customer"], "status": "SUPPORTED", "confidence": 0.88 }
+  ],
+  "issuers": [
+    {
+      "id": "issuer-aurora-grid-components",
+      "legal_name": "Aurora Grid Components Ltd",
+      "ticker": "AGC",
+      "exchange": "SYNTHETIC",
+      "country": "Syntheticland",
+      "reporting_currency": "USD",
+      "trading_currency": "USD",
+      "role": "qualified thermal-interface supplier",
+      "business_segments": ["thermal interface materials"],
+      "revenue_mix": ["synthetic platform material: 70%"],
+      "customer_concentration": "Two fictional customers represent the qualified route.",
+      "competitors": ["synthetic second source"],
+      "substitutes": ["synthetic redesign", "alternative material"],
+      "exposure_status": "SUPPORTED",
+      "exposure_claim_ids": ["claim-edge"],
+      "capture_status": "SUPPORTED",
+      "capture_mechanism": "Qualification friction and stable yield allow partial price retention while alternatives complete testing.",
+      "leakage_risks": ["customer redesign", "second-source qualification", "internal production"],
+      "market": {
+        "exchange": "SYNTHETIC",
+        "currency": "USD",
+        "quote_type": "OFFICIAL_CLOSE",
+        "price": 42.0,
+        "price_as_of": "2026-09-16T00:00:00Z",
+        "price_source_id": "ev-market",
+        "shares_outstanding": 10000000,
+        "shares_as_of": "2026-09-16T00:00:00Z",
+        "shares_source_id": "ev-market",
+        "market_cap": 420000000,
+        "market_cap_as_of": "2026-09-16T00:00:00Z",
+        "market_cap_method": "price multiplied by current shares outstanding",
+        "enterprise_value": 400000000,
+        "enterprise_value_as_of": "2026-09-16T00:00:00Z",
+        "fx_rate": null,
+        "fx_pair": null,
+        "fx_as_of": null,
+        "status": "SUPPORTED",
+        "source_ids": ["ev-market", "ev-financial"],
+        "calculation_ids": ["calc-market-cap", "calc-ev"]
+      },
+      "capital_bridge_steps": ["bridge-demand-volume", "bridge-volume-revenue", "bridge-gross-profit", "bridge-revenue-cash", "bridge-reinvestment", "bridge-financing", "bridge-cash-per-share"],
+      "evidence_ids": ["ev-issuer", "ev-financial", "ev-market"]
+    }
+  ],
+  "expectation_gap": {
+    "gap_id": "gap-aurora-market",
+    "market_anchor_type": "MARKET_CAP",
+    "market_anchor_value": 420000000,
+    "anchor_as_of": "2026-09-16T00:00:00Z",
+    "anchor_source_ids": ["ev-market"],
+    "research_case": "Qualified supply may support operating leverage if customer demand persists.",
+    "gap_mechanism": "The market anchor does not yet expose a verified consensus for uncommitted qualified capacity.",
+    "observable_resolution": "Next customer order, cancellation, or qualified-capacity disclosure.",
+    "counterevidence_ids": [],
+    "status": "SUPPORTED",
+    "evidence_ids": ["ev-market", "ev-expectation"]
+  },
+  "geo_policy_risk": {
+    "risk_id": "geo-aurora-001",
+    "status": "SUPPORTED",
+    "assessment": "Synthetic geography and policy dependencies are recorded without treating concentration as pricing power.",
+    "manufacturing_geography": ["Syntheticland"],
+    "supplier_geography": ["Syntheticland"],
+    "policy_dependencies": ["synthetic export license"],
+    "evidence_ids": ["ev-geo"]
+  },
+  "reflexivity_audit": {
+    "audit_id": "reflexivity-aurora-001",
+    "research_publication_time": "2026-09-16T12:00:00Z",
+    "price_move_start": "2026-09-16T16:00:00Z",
+    "publicity_originated": "UNKNOWN",
+    "publication_precedes_price_move": "UNKNOWN",
+    "liquidity_state": "MEDIUM",
+    "volume_discontinuity": "UNKNOWN",
+    "social_attention_change": "No social signal is used as fundamental evidence.",
+    "independent_fundamental_event": "Official close and synthetic issuer fixture only.",
+    "independent_fundamental_confirmation": "PARTIAL",
+    "price_action_independent": "UNKNOWN",
+    "status": "SUPPORTED",
+    "evidence_ids": ["ev-reflexivity"]
+  },
+  "gates": {
+    "G0_identity_time": { "state": "PASS", "reason": "Identity, cutoff, and adapter availability are explicit.", "evidence_ids": ["ev-market"] },
+    "G1_system_necessity": { "state": "PASS", "reason": "System shift and architecture necessity are supported.", "evidence_ids": ["ev-system"] },
+    "G2_dependency_edge": { "state": "PASS", "reason": "The supplier edge has product, scope, qualification, and evidence.", "evidence_ids": ["ev-edge", "ev-issuer"] },
+    "G3_substitution_bypass": { "state": "PASS", "reason": "Alternative routes and bypass difficulty are assessed.", "evidence_ids": ["ev-supply"] },
+    "G4_supply_constraint": { "state": "PASS", "reason": "Parallel supply observations support the qualified constraint.", "evidence_ids": ["ev-supply"] },
+    "G5_customer_validation": { "state": "PASS", "reason": "A dated customer qualification signal is present.", "evidence_ids": ["ev-customer"] },
+    "G6_issuer_capture": { "state": "PASS", "reason": "Issuer exposure and capture are independently represented.", "evidence_ids": ["ev-issuer"] },
+    "G7_financial_transmission": { "state": "PASS", "reason": "Operating value is connected to a capital bridge.", "evidence_ids": ["ev-financial"] },
+    "G8_market_expectation": { "state": "PASS", "reason": "Market capitalization is a dated observable anchor.", "evidence_ids": ["ev-market", "ev-expectation"] },
+    "G9_geo_policy": { "state": "PASS", "reason": "Geographic and policy exposure is separately assessed.", "evidence_ids": ["ev-geo"] },
+    "G10_reflexivity_disproof": { "state": "PASS", "reason": "Reflexivity is explicit and a disproof plan is executable.", "evidence_ids": ["ev-reflexivity"] }
+  },
+  "countercases": [
+    { "id": "countercase-second-source", "severity": "MATERIAL", "claim": "A qualified second source may remove Aurora's scarcity before demand scales.", "status": "PARTIAL", "evidence_ids": ["ev-supply"], "disproof_plan_ids": ["plan-second-source"] }
+  ],
+  "disproof_plans": [
+    { "id": "plan-second-source", "target_claim_id": "claim-edge", "observable": "A second supplier reaches customer qualification.", "threshold": "At least one independent qualification disclosure.", "time_window": "Next four quarters.", "source_class": "CUSTOMER or REGULATOR", "effect_on_case": "Downgrade qualified supplier depth and capture retention." }
+  ],
+  "classification": "RESEARCH_READY",
+  "current_state": "DRAFT",
+  "transitions": [],
+  "notes": ["Synthetic fixture only; no live market-data entitlement is implied."]
+}

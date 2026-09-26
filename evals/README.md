@@ -10,4 +10,6 @@ The evaluation set is intentionally synthetic and behavior-focused. It tests whe
 - requires disproof plans for material and fatal countercases;
 - preserves UNKNOWN instead of fabricating a source or number.
 
-The checked-in examples contain no real company conclusion. Add a real case only in a separately governed research workspace.
+Every JSONL record must name a fixture and expected accept/reject. Mutations are executable `set`/`remove` operations with a path array. Rejections must name expected error codes. Unsupported or unexecuted records fail the run; failed evaluations return a nonzero process exit code even when unit tests pass. The count reports passed assertions, not merely parsed lines.
+
+Synthetic JSON fixtures remain offline and deterministic. Any dated public-source smoke example is clearly labeled limited research, not a full valuation or a synthetic test. Live acquisition failures and human comprehension studies must not be represented as automated successes.

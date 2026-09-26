@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "$id": "urn:suoha:causal-constraint-research:expectation-gap",
+  "title": "Market expectation gap",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["gap_id", "market_anchor_type", "market_anchor_value", "anchor_as_of", "anchor_source_ids", "research_case", "gap_mechanism", "observable_resolution", "status", "evidence_ids"],
+  "properties": {
+    "gap_id": { "type": "string", "minLength": 3 },
+    "market_anchor_type": { "type": "string", "enum": ["CONSENSUS_REVENUE", "CONSENSUS_MARGIN", "GUIDANCE", "VALUATION_MULTIPLE", "OPTIONS_IMPLIED", "MARKET_CAP", "EV", "PEER_IMPLIED", "UNKNOWN"] },
+    "market_anchor_value": { "type": ["number", "string", "null"] },
+    "anchor_as_of": { "type": ["string", "null"], "format": "date-time" },
+    "anchor_source_ids": { "type": "array", "items": { "type": "string" } },
+    "research_case": { "type": "string", "minLength": 3 },
+    "gap_mechanism": { "type": "string", "minLength": 3 },
+    "observable_resolution": { "type": "string", "minLength": 3 },
+    "counterevidence_ids": { "type": "array", "items": { "type": "string" } },
+    "status": { "type": "string", "enum": ["SUPPORTED", "PARTIAL", "UNKNOWN", "NOT_ESTABLISHED"] },
+    "evidence_ids": { "type": "array", "items": { "type": "string" } }
+  }
+}
